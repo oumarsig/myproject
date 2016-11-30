@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset = "UTF-8" />
+        <meta http-equiv = "Content-Type" Content = "text/html; charset = UTF-8" />
+        <meta http-equiv = "X-UA-Compatible" Content = "IE=Edge" />
+        <meta http-equiv = "pragma" Content = "no-cache" />
+        <meta name = "viewport" Content = "width = device-width, initial-scale = 1" />
+        <meta name = "author" Content = "Oumar Niang" />
+    
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}{% endblock %}
+        {% block javascripts_head %}{% endblock %}
+        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts_body %}{% endblock %}
     </body>
 </html>
