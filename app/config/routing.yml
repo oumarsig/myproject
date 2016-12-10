@@ -1,7 +1,3 @@
-TechCorpFrontBundle_status:
-    resource: "@TechCorpFrontBundle/Resources/config/routing/status.yml"
-    prefix:   /status
-
 tech_corp_front:
     resource: "@TechCorpFrontBundle/Resources/config/routing.yml"
     prefix:   /
