@@ -61,7 +61,7 @@ class Status
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Status
      */
     public function setContent($content)
@@ -84,7 +84,7 @@ class Status
     /**
      * Set deleted
      *
-     * @param boolean $deleted
+     * @param  boolean $deleted
      * @return Status
      */
     public function setDeleted($deleted)
@@ -107,7 +107,7 @@ class Status
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Status
      */
     public function setCreatedAt($createdAt)
@@ -130,7 +130,7 @@ class Status
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Status
      */
     public function setUpdatedAt($updatedAt)

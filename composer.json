@@ -22,7 +22,9 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
-        "phpro/grumphp": "^0.10.1"
+        "phpmd/phpmd" : "@stable",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/phpdocumentor": "^2.9"
     },
     "scripts": {
         "post-root-package-install": [
