@@ -1,0 +1,29 @@
+{% extends 'TechCorpFrontBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class = "container">
+        <h1> Timeline</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Content</th>
+                    <th>Deleted</th>
+                    <th>CreatedAt</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for status in statuses %}
+                <tr>
+                    <td>{{status.content}}</td>
+                    <td>{{status.deleted ? "Supprimé" : "Visible"}}</td>
+                    <td>{% if status.CreatedAt %}
+                            {{status.CreatedAt|date('Y-M-D H:i:s')}}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
