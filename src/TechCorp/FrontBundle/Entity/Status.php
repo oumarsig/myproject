@@ -49,6 +49,12 @@ class Status
     private $updatedAt;
 
     /**
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="statuses")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+    protected $user;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -167,5 +173,28 @@ class Status
     public function preUpdateEvent()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \TechCorp\FrontBundle\Entity\User $user
+     * @return Status
+     */
+    public function setUser(\TechCorp\FrontBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \TechCorp\FrontBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

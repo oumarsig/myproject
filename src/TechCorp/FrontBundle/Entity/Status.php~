@@ -36,6 +36,23 @@ class Status
      */
     private $deleted;
 
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="statuses")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+    protected $user;
 
     /**
      * Get id
@@ -50,7 +67,7 @@ class Status
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Status
      */
     public function setContent($content)
@@ -73,7 +90,7 @@ class Status
     /**
      * Set deleted
      *
-     * @param boolean $deleted
+     * @param  boolean $deleted
      * @return Status
      */
     public function setDeleted($deleted)
@@ -94,15 +111,67 @@ class Status
     }
 
     /**
-     * @var \DateTime
-     * @ORM\Column(name="created_at", type="datetime")
+     * Set createdAt
+     *
+     * @param  \DateTime $createdAt
+     * @return Status
      */
-    private $createdAt;
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
 
     /**
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime")
+     * Get createdAt
+     *
+     * @return \DateTime 
      */
-    private $updatedAt;
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
 
+    /**
+     * Set updatedAt
+     *
+     * @param  \DateTime $updatedAt
+     * @return Status
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+    *
+    *@ORM\PrePersist
+    */
+    public function prePersistEvent()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+    *
+    *@ORM\PreUpdate
+    */
+    public function preUpdateEvent()
+    {
+        $this->updatedAt = new \DateTime();
+    }
 }
