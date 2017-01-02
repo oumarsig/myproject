@@ -1,0 +1,17 @@
+{% extends 'TechCorpFrontBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <h1>Timeline de {{ user.username }}</h1>
+
+    {% if statuses != null %}
+    <div class="container">
+        {% for status in statuses %}
+            {% include "TechCorpFrontBundle:_components:status.html.twig" with {'status': status} %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Cet utilisateur n'a pour le moment rien publié</p>
+    {% endif %}
+</div>
+{% endblock content %}

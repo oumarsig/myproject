@@ -1,0 +1,10 @@
+
+<div class="row" class="status-container">
+    <div class="col-md-12">
+        <p>Par <a href="{{ path ('tech_corp_front_user_timeline', 
+        { userId : status.user.id }) }}">{{ status.user.username }}</a></p>
+        <p> {{ status.content }} </p>
+        <p> le {{ status.createdAt|date('Y-M-D H:i:s')}} </p>
+    </div>
+    <a href="{{ path ('tech_corp_front_timeline')}}"><button type="button" class="btn btn-link">Timeline</button></a>
+</div>
