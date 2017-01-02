@@ -11,7 +11,7 @@ use TechCorp\FrontBundle\Entity\Status;
 * @ORM\Table(name="user")
 */
 
-class User
+class User //extends BaseUser
 {
 
     /**
@@ -36,8 +36,8 @@ class User
     public function __construct()
     {
         # code...
-        parent::__construct();
-        $this->statuses = new $arrayCollectionarray();
+        //parent::__construct();
+        $this->statuses = new ArrayCollection();
     }
 
     /**

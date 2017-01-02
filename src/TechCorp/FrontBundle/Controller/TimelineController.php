@@ -10,10 +10,35 @@ class TimelineController extends Controller
     {
         # code...
         $em = $this->getDoctrine()->getManager();
-        $statuses = $em->getRepository('TechCorpFrontBundle:Status')->findAll();
+        $statuses = $em->getRepository('TechCorpFrontBundle:Status')
+                       ->findAll();
 
         return $this->render('TechCorpFrontBundle:Timeline:timeline.html.twig', 
                                     array('statuses' => $statuses)
                             );
+    }
+    
+    public function userTimelineAction($userId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('TechCorpFrontBundle:User')
+                       ->findOneById($userId); 
+        if(!$user){
+            $this->createNotFoundException("L'utilisateur n'existe pas pour l'instant!");
+        }
+        $statuses = $em->getRepository('TechCorpFrontBundle:Status')
+                       ->findBy(
+                                array(
+                                    'user' => $user,
+                                    'deleted' => false,
+                           )
+                       );
+        return $this->render('TechCorpFrontBundle:Timeline:user_timeline.html.twig',
+                                    array(
+                                        'user' => $user,
+                                        'statuses' => $statuses,
+                                    )
+                            );
+        
     }
 }

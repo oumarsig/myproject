@@ -1,3 +1,7 @@
+tech_corp_front_user_timeline:
+    path:     /timeline/{userId}
+    defaults: { _controller: TechCorpFrontBundle:Timeline:userTimeline }
+
 tech_corp_front_homepage:
     path:     /
     defaults: { _controller: TechCorpFrontBundle:Static:homepage }
