@@ -13,5 +13,11 @@
     {% else %}
     <p>Cet utilisateur n'a pour le moment rien publié</p>
     {% endif %}
+    <h2>Liste des personnes ajoutées</h2>
+    {% for currFriend in user.friends %}
+    <p>{{ currFriend.username }}</p>
+    {% else %}
+        <p>Cet utilisateur n'a pas ajouté d'ami.</p>
+    {% endfor %}
 </div>
 {% endblock content %}
