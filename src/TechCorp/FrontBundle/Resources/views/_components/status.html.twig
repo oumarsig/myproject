@@ -6,5 +6,17 @@
         <p> {{ status.content }} </p>
         <p> le {{ status.createdAt|date('Y-M-D H:i:s')}} </p>
     </div>
+    <div>
+        {% for comment in status.comments%}
+        <div class="row">
+            <div class="col-md-12">
+            <p>Commentaire de <a href="{{ path('tech_corp_front_timeline', 
+            {userId: comment.user.id} )}}">{{comment.user.username}}</a></p>
+            <p>{{comment.content}}</p>
+             <p>{{comment.createdAt|date('Y-M-D H:i:s')}}</p>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
     <a href="{{ path ('tech_corp_front_timeline')}}"><button type="button" class="btn btn-link">Timeline</button></a>
 </div>

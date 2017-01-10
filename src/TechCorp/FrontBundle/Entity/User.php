@@ -5,6 +5,8 @@ namespace TechCorp\FrontBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use TechCorp\FrontBundle\Entity\Status;
+use TechCorp\FrontBundle\Entity\User;
+use TechCorp\FrontBundle\Entity\Comment;
 
 /**
 * @ORM\Entity
@@ -51,6 +53,11 @@ class User //extends BaseUser
     */
     private $friendsWithMe;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+    */
+    protected $comments;
+
     public function __construct()
     {
         # code...
@@ -58,6 +65,7 @@ class User //extends BaseUser
         $this->statuses      = new ArrayCollection();
         $this->friends       = new ArrayCollection();
         $this->friendsWithMe = new ArrayCollection();
+        $this->comments      = new ArrayCollection();
     }
 
     /**
@@ -99,7 +107,7 @@ class User //extends BaseUser
      * @param \TechCorp\FrontBundle\Entity\Status $statuses
      * @return User
      */
-    public function addStatus(\TechCorp\FrontBundle\Entity\Status $statuses)
+    public function addStatus(Status $statuses)
     {
         $this->statuses[] = $statuses;
 
@@ -111,7 +119,7 @@ class User //extends BaseUser
      *
      * @param \TechCorp\FrontBundle\Entity\Status $statuses
      */
-    public function removeStatus(\TechCorp\FrontBundle\Entity\Status $statuses)
+    public function removeStatus(Status $statuses)
     {
         $this->statuses->removeElement($statuses);
     }
@@ -132,7 +140,7 @@ class User //extends BaseUser
      * @param \TechCorp\FrontBundle\Entity\User $friends
      * @return User
      */
-    public function addFriend(\TechCorp\FrontBundle\Entity\User $friends)
+    public function addFriend(User $friends)
     {
         $this->friends[] = $friends;
 
@@ -144,7 +152,7 @@ class User //extends BaseUser
      *
      * @param \TechCorp\FrontBundle\Entity\User $friends
      */
-    public function removeFriend(\TechCorp\FrontBundle\Entity\User $friends)
+    public function removeFriend(User $friends)
     {
         $this->friends->removeElement($friends);
     }
@@ -165,7 +173,7 @@ class User //extends BaseUser
      * @param \TechCorp\FrontBundle\Entity\User $friend
      * @return boolean
      */
-    public function hasFriend(\TechCorp\FrontBundle\Entity\User $friend)
+    public function hasFriend(User $friend)
     {
         return $this->friends->contains($friend);
     }
@@ -176,7 +184,7 @@ class User //extends BaseUser
      * @param \TechCorp\FrontBundle\Entity\User $friend
      * @return boolean
      */
-    public function canAddFriend(\TechCorp\FrontBundle\Entity\User $friend)
+    public function canAddFriend(User $friend)
     {
         return $this != $friend && !$this->hasFriend($friend);
     }
@@ -187,7 +195,7 @@ class User //extends BaseUser
      * @param \TechCorp\FrontBundle\Entity\User $friendsWithMe
      * @return User
      */
-    public function addFriendsWithMe(\TechCorp\FrontBundle\Entity\User $friendsWithMe)
+    public function addFriendsWithMe(User $friendsWithMe)
     {
         $this->friendsWithMe[] = $friendsWithMe;
 
@@ -199,7 +207,7 @@ class User //extends BaseUser
      *
      * @param \TechCorp\FrontBundle\Entity\User $friendsWithMe
      */
-    public function removeFriendsWithMe(\TechCorp\FrontBundle\Entity\User $friendsWithMe)
+    public function removeFriendsWithMe(User $friendsWithMe)
     {
         $this->friendsWithMe->removeElement($friendsWithMe);
     }
@@ -214,4 +222,37 @@ class User //extends BaseUser
         return $this->friendsWithMe;
     }
     
+
+    /**
+     * Add comments
+     *
+     * @param \TechCorp\FrontBundle\Entity\Comment $comments
+     * @return User
+     */
+    public function addComment(Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \TechCorp\FrontBundle\Entity\Comment $comments
+     */
+    public function removeComment(Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

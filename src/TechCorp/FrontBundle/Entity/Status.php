@@ -3,6 +3,9 @@
 namespace TechCorp\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use TechCorp\FrontBundle\Entity\User;
+use TechCorp\FrontBundle\Entity\Comment;
 
 /**
  * Status
@@ -53,6 +56,17 @@ class Status
     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
     */
     protected $user;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="status")
+    */
+    protected $comments;
+
+    public function __construct()
+    {
+        # code...
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -181,7 +195,7 @@ class Status
      * @param \TechCorp\FrontBundle\Entity\User $user
      * @return Status
      */
-    public function setUser(\TechCorp\FrontBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -196,5 +210,38 @@ class Status
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \TechCorp\FrontBundle\Entity\Comment $comments
+     * @return Status
+     */
+    public function addComment(Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \TechCorp\FrontBundle\Entity\Comment $comments
+     */
+    public function removeComment(Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

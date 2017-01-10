@@ -26,6 +26,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
             $status->setUser($user);
 
             $manager->persist($status);
+            $this->addReference('status' . $i, $status);
         }
         
         $manager->flush();

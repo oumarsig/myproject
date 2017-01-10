@@ -13,7 +13,7 @@ use TechCorp\FrontBundle\Entity\User;
 
 class LoadFriendshipData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
-    const MAX_FRIENDS_NB = 8;
+    const MAX_NB_FRIENDS = 8;
 
     /**
     * @var ContainerInterface
@@ -30,7 +30,7 @@ class LoadFriendshipData extends AbstractFixture implements OrderedFixtureInterf
         for ($i=0; $i<LoadUserData::MAX_NB_USERS; $i++){
             $currentUser = $this->getReference('user' . $i);
             $j = 0;
-            $nbFriends = rand(0, self::MAX_FRIENDS_NB);
+            $nbFriends = rand(0, self::MAX_NB_FRIENDS);
 
             while($j < $nbFriends){
                 $currentFriend = $this->getReference('user' . rand(0,9));
