@@ -13,7 +13,8 @@
             <p>Commentaire de <a href="{{ path('tech_corp_front_timeline', 
             {userId: comment.user.id} )}}">{{comment.user.username}}</a></p>
             <p>{{comment.content}}</p>
-             <p>{{comment.createdAt|date('Y-M-D H:i:s')}}</p>
+             <p>Créé le {{comment.createdAt|date('Y-M-D H:i:s')}}</p>
+             <p>Mis-à-jour le {{comment.updatedAt|date('Y-M-D H:i:s')}}</p>
             </div>
         </div>
         {%endfor%}
