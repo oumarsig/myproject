@@ -11,7 +11,7 @@ use TechCorp\FrontBundle\Entity\Comment;
  * Status
  *
  * @ORM\Table(name="status")
- * @ORM\Entity
+ * @ORM\Entity (repositoryClass="TechCorp\FrontBundle\Repository\StatusRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Status
